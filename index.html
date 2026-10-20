@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indie Game Studio & Our First Game!</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Gaegu, Caveat, Fredoka & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Fredoka:wght@400;600;700&family=Gaegu:wght@400;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: '#fffdf5',
+                        paper: '#fef7e5',
+                        coral: '#ff6b6b',
+                        sunny: '#ffd166',
+                        mint: '#06d6a0',
+                        sky: '#118ab2',
+                        darky: '#1e1b18'
+                    },
+                    fontFamily: {
+                        hand: ['Gaegu', 'cursive'],
+                        caveat: ['Caveat', 'cursive'],
+                        display: ['Fredoka', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fffdf5;
+            color: #1e1b18;
+        }
+        
+        /* Playful shadows and borders */
+        .sketch-box {
+            border: 3px solid #1e1b18;
+            box-shadow: 5px 5px 0px #1e1b18;
+            transition: all 0.2s ease-in-out;
+        }
+        .sketch-box:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 8px 8px 0px #1e1b18;
+        }
+        .sketch-btn {
+            border: 3px solid #1e1b18;
+            box-shadow: 4px 4px 0px #1e1b18;
+            transition: all 0.15s ease-in-out;
+        }
+        .sketch-btn:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0px #1e1b18;
+        }
+        .sketch-btn:active {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px #1e1b18;
+        }
+
+        /* Doodly Background Pattern */
+        .bg-doodle {
+            background-image: radial-gradient(#ff6b6b 1.5px, transparent 1.5px), radial-gradient(#118ab2 1.5px, #fffdf5 1.5px);
+            background-size: 60px 60px;
+            background-position: 0 0, 30px 30px;
+        }
+
+        /* Wobbly sticker animation */
+        @keyframes wobble {
+            0%, 100% { transform: rotate(-3deg); }
+            50% { transform: rotate(3deg); }
+        }
+        .animate-wobble {
+            animation: wobble 3s ease-in-out infinite;
+        }
+
+        /* Custom social buttons branding */
+        .brand-steam {
+            background: linear-gradient(135deg, #171a21 0%, #1b2838 100%);
+            color: #ffffff;
+        }
+        .brand-discord {
+            background-color: #5865F2;
+            color: #ffffff;
+        }
+        .brand-facebook {
+            background-color: #1877F2;
+            color: #ffffff;
+        }
+        .brand-twitter {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .brand-youtube {
+            background-color: #FF0000;
+            color: #ffffff;
+        }
+        .brand-instagram {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="bg-cream text-darky antialiased selection:bg-sunny selection:text-darky bg-doodle">
+
+    <!-- NAVIGATION -->
+    <header class="fixed top-0 left-0 w-full z-50 p-4">
+        <div class="max-w-6xl mx-auto bg-paper sketch-box rounded-2xl px-5 py-3 flex items-center justify-between">
+            
+            <!-- Logo -->
+            <a href="#hero" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-xl bg-sunny border-2 border-darky flex items-center justify-center font-display font-bold text-xl rotate-[-4deg] group-hover:rotate-6 transition-transform">
+                    <i class="fa-solid fa-gamepad text-darky"></i>
+                </div>
+                <span class="font-display font-bold text-xl tracking-wide text-darky group-hover:text-coral transition-colors">
+                    Cassovia21
+                </span>
+            </a>
+
+            <!-- Nav Links (Desktop) -->
+            <nav class="hidden md:flex items-center gap-6 font-display font-semibold text-base">
+                <a href="#hero" class="hover:text-coral hover:underline decoration-wavy decoration-sunny transition-all">Hey!</a>
+                <a href="#studio" class="hover:text-coral hover:underline decoration-wavy decoration-sunny transition-all">About Us</a>
+                <a href="#game" class="hover:text-coral hover:underline decoration-wavy decoration-sunny transition-all">Our Game</a>
+                <a href="#team" class="hover:text-coral hover:underline decoration-wavy decoration-sunny transition-all">The Squad</a>
+            </nav>
+
+            <!-- CTA Button -->
+            <div class="hidden md:flex items-center">
+                <a href="#game" class="sketch-btn px-5 py-2 rounded-xl bg-coral hover:bg-ff5252 text-white font-display font-bold text-sm tracking-wide">
+                    Follow Dev!
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-2xl p-1 focus:outline-none" aria-label="Toggle Navigation Menu">
+                <i class="fa-solid fa-bars-staggered"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden mt-2 bg-paper sketch-box rounded-2xl p-5 space-y-3 font-display font-bold text-center">
+            <a href="#hero" class="block py-2 hover:text-coral">Hey!</a>
+            <a href="#studio" class="block py-2 hover:text-coral">About Us</a>
+            <a href="#game" class="block py-2 hover:text-coral">Our Game</a>
+            <a href="#team" class="block py-2 hover:text-coral">The Squad</a>
+            <a href="#game" class="block py-3 rounded-xl bg-coral text-white sketch-btn">Follow Dev!</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="min-h-screen flex items-center justify-center pt-28 pb-16 px-4 relative overflow-hidden">
+        
+        <!-- Stickers in background -->
+        <div class="absolute top-32 left-8 md:left-20 bg-sunny sketch-box px-4 py-2 rounded-2xl font-hand text-xl font-bold rotate-[-12deg] animate-wobble hidden sm:block">
+            100% Pure Fun!
+        </div>
+        <div class="absolute bottom-20 right-8 md:right-24 bg-mint sketch-box px-4 py-2 rounded-2xl font-hand text-xl font-bold rotate-[8deg] animate-wobble hidden sm:block">
+            Zero Caffeine Crash!
+        </div>
+
+        <div class="max-w-4xl mx-auto text-center relative z-10">
+            
+            <!-- Cheeky Tagline -->
+            <div class="inline-block bg-sky text-white sketch-box px-4 py-1.5 rounded-full font-hand text-xl font-bold mb-6 rotate-[-2deg]">
+                Hey there! We craft games that make you giggle!
+            </div>
+
+            <!-- Title -->
+            <h1 class="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold leading-tight mb-6">
+                Cooking up something extra <br class="hidden sm:block"/>
+                <span class="bg-sunny px-3 py-1 rounded-2xl border-2 border-darky inline-block rotate-[-1deg] text-coral">
+                    JUICY & ADDICTIVE!
+                </span>
+            </h1>
+
+            <p class="font-body text-slate-700 text-lg sm:text-xl max-w-2xl mx-auto mb-8 leading-relaxed">
+                We're a tiny indie game studio powered by wild imagination. Instead of boring corporate rules, we mix crazy ideas, bright colors, and a big dose of humor!
+            </p>
+
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="#game" class="w-full sm:w-auto sketch-btn px-8 py-4 rounded-2xl bg-coral hover:bg-ff5252 text-white font-display font-bold text-lg flex items-center justify-center gap-3 group">
+                    <span>See What We're Making</span>
+                    <i class="fa-solid fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
+                </a>
+                <a href="#studio" class="w-full sm:w-auto sketch-btn px-8 py-4 rounded-2xl bg-paper hover:bg-sunny text-darky font-display font-bold text-lg">
+                    Read Our Story
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION: STUDIO & VISION -->
+    <section id="studio" class="py-20 px-4 relative">
+        <div class="max-w-5xl mx-auto">
+            
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl sm:text-5xl font-bold">Where did we come from?</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="bg-paper sketch-box p-8 rounded-3xl relative rotate-[-2deg] hover:rotate-0">
+                    <div class="w-14 h-14 bg-sunny rounded-2xl border-2 border-darky flex items-center justify-center text-2xl mb-4 text-darky">
+                        <i class="fa-regular fa-lightbulb"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold mb-2">Fresh Idea Machine</h3>
+                    <p class="font-body text-sm text-slate-700 leading-relaxed">
+                        Nothing is too wild! We take mechanics that others scrap and polish them into game loops you can't put down.
+                    </p>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-paper sketch-box p-8 rounded-3xl relative rotate-[1deg] hover:rotate-0">
+                    <div class="w-14 h-14 bg-mint rounded-2xl border-2 border-darky flex items-center justify-center text-2xl mb-4 text-darky">
+                        <i class="fa-solid fa-pizza-slice"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold mb-2">Pizza Powered</h3>
+                    <p class="font-body text-sm text-slate-700 leading-relaxed">
+                        Some start in garages, we started on the living room couch surrounding empty pizza boxes. We're best friends building dreams!
+                    </p>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-paper sketch-box p-8 rounded-3xl relative rotate-[-1deg] hover:rotate-0">
+                    <div class="w-14 h-14 bg-sky text-white rounded-2xl border-2 border-darky flex items-center justify-center text-2xl mb-4">
+                        <i class="fa-regular fa-heart"></i>
+                    </div>
+                    <h3 class="font-display text-2xl font-bold mb-2">Players First</h3>
+                    <p class="font-body text-sm text-slate-700 leading-relaxed">
+                        Making games without community is boring. We want to hear your ideas, laugh at your memes, and tweak every detail together.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION: GAME & PROTAGONIST -->
+    <section id="game" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            
+            <!-- Banner / Header -->
+            <div class="bg-sunny sketch-box p-8 sm:p-12 rounded-3xl mb-12 relative overflow-hidden">
+                <div class="inline-block bg-coral text-white sketch-box px-3 py-1 rounded-lg font-hand text-lg font-bold mb-3 rotate-[-3deg]">
+                    FRESH FROM THE OVEN!
+                </div>
+                <h2 class="font-display text-4xl sm:text-6xl font-extrabold text-darky mb-4">
+                    Project: "Super Sock"
+                </h2>
+                <p class="font-body text-slate-800 text-base sm:text-lg max-w-2xl leading-relaxed">
+                    A wacky 2D platformer where you play as a lost sock escaping the washing machine on a mission to reunite with your pair!
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-center">
+                
+                <!-- Game Screenshot Preview -->
+                <div class="lg:col-span-7">
+                    <div class="bg-paper sketch-box rounded-3xl p-4 rotate-[-1deg]">
+                        <img 
+                            src="https://placehold.co/800x500/ffd166/1e1b18?text=Game+Screenshot+Preview" 
+                            alt="Game Preview" 
+                            class="w-full h-auto rounded-2xl border-2 border-darky"
+                        >
+                        <div class="mt-4 flex justify-between items-center px-2">
+                            <span class="font-hand text-xl font-bold text-coral">Genre: Comedy Platformer</span>
+                            <span class="font-hand text-xl font-bold text-sky">Status: Alpha Stage!</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Protagonist Card -->
+                <div class="lg:col-span-5">
+                    <div class="bg-paper sketch-box p-6 rounded-3xl space-y-4 relative rotate-[2deg]">
+                        
+                        <!-- Sticker -->
+                        <div class="absolute -top-4 -right-2 bg-coral text-white sketch-box px-3 py-1 rounded-full font-hand text-sm font-bold rotate-[10deg]">
+                            MAIN HERO!
+                        </div>
+
+                        <div class="flex items-center gap-4">
+                            <div class="w-20 h-20 rounded-2xl border-2 border-darky bg-coral flex items-center justify-center text-3xl text-white">
+                                <i class="fa-solid fa-ghost"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-display text-2xl font-bold">Barnaby the Sock</h3>
+                                <p class="font-caveat text-xl text-coral font-bold">Cotton Warrior</p>
+                            </div>
+                        </div>
+
+                        <hr class="border-dashed border-darky/30">
+
+                        <div class="space-y-2 font-body text-sm text-slate-700">
+                            <p><strong>Special Power:</strong> Can stretch and slingshot across rooms!</p>
+                            <p><strong>Dislikes:</strong> Muddy boots & odd washer cycles.</p>
+                            <p><strong>Goal:</strong> Find his long-lost brother Frank on the drying rack.</p>
+                        </div>
+
+                        <!-- Interactive Modal Box Trigger -->
+                        <button id="hero-greet-btn" class="w-full sketch-btn py-3 rounded-2xl bg-mint text-darky font-display font-bold text-sm mt-4 flex items-center justify-center gap-2">
+                            <span>Say Hi to Barnaby!</span>
+                            <i class="fa-regular fa-hand"></i>
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION: TEAM -->
+    <section id="team" class="py-20 px-4">
+        <div class="max-w-5xl mx-auto">
+            
+            <div class="text-center mb-16">
+                <h2 class="font-display text-4xl sm:text-5xl font-bold">Who's behind the chaos?</h2>
+            </div>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                
+                <!-- Member 1: Founder & Creative Director -->
+                <div class="bg-paper sketch-box p-6 rounded-3xl text-center rotate-[-2deg] hover:rotate-0 transition-transform">
+                    <div class="w-24 h-24 rounded-2xl border-2 border-darky mx-auto mb-4 bg-sunny flex items-center justify-center text-4xl text-darky">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold">Alex Rivera</h3>
+                    <p class="font-caveat text-xl text-coral font-bold mb-2">Founder & Creative Director</p>
+                    <p class="font-body text-xs text-slate-600 mb-4">Shapes the vision and keeps the team inspired, turning wild concepts into game realities.</p>
+                    <div class="font-hand text-lg font-bold text-sky">@creative_boss</div>
+                </div>
+
+                <!-- Member 2: Co-founder & Programmer -->
+                <div class="bg-paper sketch-box p-6 rounded-3xl text-center rotate-[2deg] hover:rotate-0 transition-transform">
+                    <div class="w-24 h-24 rounded-2xl border-2 border-darky mx-auto mb-4 bg-coral flex items-center justify-center text-4xl text-white">
+                        <i class="fa-solid fa-code"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold">Sam Taylor</h3>
+                    <p class="font-caveat text-xl text-coral font-bold mb-2">Co-founder & Programmer</p>
+                    <p class="font-body text-xs text-slate-600 mb-4">Crafts smooth mechanics and optimizes code to keep gameplay running flawlessly.</p>
+                    <div class="font-hand text-lg font-bold text-sky">@code_ninja</div>
+                </div>
+
+                <!-- Member 3: Co-founder & Programmer -->
+                <div class="bg-paper sketch-box p-6 rounded-3xl text-center rotate-[-1deg] hover:rotate-0 transition-transform">
+                    <div class="w-24 h-24 rounded-2xl border-2 border-darky mx-auto mb-4 bg-mint flex items-center justify-center text-4xl text-darky">
+                        <i class="fa-solid fa-terminal"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold">Jamie Chen</h3>
+                    <p class="font-caveat text-xl text-coral font-bold mb-2">Co-founder & Programmer</p>
+                    <p class="font-body text-xs text-slate-600 mb-4">Builds backend systems, physics logic, and makes sure nothing breaks during play.</p>
+                    <div class="font-hand text-lg font-bold text-sky">@tech_wizard</div>
+                </div>
+
+                <!-- Member 4: Co-founder & UX/UI Designer -->
+                <div class="bg-paper sketch-box p-6 rounded-3xl text-center rotate-[1deg] hover:rotate-0 transition-transform">
+                    <div class="w-24 h-24 rounded-2xl border-2 border-darky mx-auto mb-4 bg-sky flex items-center justify-center text-4xl text-white">
+                        <i class="fa-solid fa-pen-nib"></i>
+                    </div>
+                    <h3 class="font-display text-xl font-bold">Morgan Vance</h3>
+                    <p class="font-caveat text-xl text-coral font-bold mb-2">Co-founder & UX/UI Designer</p>
+                    <p class="font-body text-xs text-slate-600 mb-4">Designs intuitive menus, beautiful interfaces, and juicy player interactions.</p>
+                    <div class="font-hand text-lg font-bold text-sky">@ui_artisan</div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 px-4 border-t-4 border-dashed border-darky/20 bg-paper">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            
+            <!-- Left / Copyright -->
+            <div class="text-center md:text-left">
+                <h4 class="font-display text-2xl font-bold text-darky mb-1">Cassovia21</h4>
+                <p class="font-body text-xs text-slate-600">
+                    &copy; <span id="year"></span> Cassovia21. All rights reserved.
+                </p>
+            </div>
+
+            <!-- Branded Social Links Grid -->
+            <div class="flex flex-wrap justify-center gap-3">
+                <a href="#" aria-label="Steam" class="w-12 h-12 sketch-btn rounded-xl brand-steam flex items-center justify-center text-xl hover:scale-105 transition-transform">
+                    <i class="fa-brands fa-steam"></i>
+                </a>
+                <a href="#" aria-label="Discord" class="w-12 h-12 sketch-btn rounded-xl brand-discord flex items-center justify-center text-xl hover:scale-105 transition-transform">
+                    <i class="fa-brands fa-discord"></i>
+                </a>
+                <a href="#" aria-label="YouTube" class="w-12 h-12 sketch-btn rounded-xl brand-youtube flex items-center justify-center text-xl hover:scale-105 transition-transform">
+                    <i class="fa-brands fa-youtube"></i>
+                </a>
+                <a href="#" aria-label="Facebook" class="w-12 h-12 sketch-btn rounded-xl brand-facebook flex items-center justify-center text-xl hover:scale-105 transition-transform">
+                    <i class="fa-brands fa-facebook-f"></i>
+                </a>
+                <a href="#" aria-label="X / Twitter" class="w-12 h-12 sketch-btn rounded-xl brand-twitter flex items-center justify-center text-xl hover:scale-105 transition-transform">
+                    <i class="fa-brands fa-x-twitter"></i>
+                </a>
+                <a href="#" aria-label="Instagram" class="w-12 h-12 sketch-btn rounded-xl brand-instagram flex items-center justify-center text-xl hover:scale-105 transition-transform">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+            </div>
+
+            <!-- Contact -->
+            <div class="text-center md:text-right font-body text-xs text-slate-700">
+                <p class="font-bold mb-1">Send us mail! <i class="fa-regular fa-envelope ml-1"></i></p>
+                <a href="mailto:hello@yourstudio.com" class="font-hand text-lg font-bold text-coral underline">hello@yourstudio.com</a>
+            </div>
+
+        </div>
+    </footer>
+
+    <!-- Interactive Greeting Message Modal -->
+    <div id="greeting-modal" class="fixed inset-0 bg-darky/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-paper sketch-box p-6 rounded-3xl max-w-sm w-full text-center space-y-4 animate-wobble">
+            <div class="text-4xl text-coral">
+                <i class="fa-solid fa-comments"></i>
+            </div>
+            <h3 class="font-display text-2xl font-bold">Barnaby says:</h3>
+            <p class="font-body text-slate-700">"Yay! Thanks for stopping by! Development is going super smoothly!"</p>
+            <button id="close-modal-btn" class="sketch-btn px-6 py-2 rounded-xl bg-sunny font-display font-bold text-sm">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Set dynamic copyright year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+
+        menuBtn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+            });
+        });
+
+        // Greeting Modal Logic
+        const greetBtn = document.getElementById('hero-greet-btn');
+        const modal = document.getElementById('greeting-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        greetBtn.addEventListener('click', () => {
+            modal.classList.remove('hidden');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modal.classList.add('hidden');
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
